@@ -4,18 +4,16 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 
-st.set_page_config(page_title=f'{selected_platform} Dashboard', layout='wide')
+st.set_page_config(page_title='Streaming Dashboard', layout='wide')
 selected_platform = st.sidebar.selectbox('Platform', options=['NETFLIX', 'DISNEY'])
-
+st.title(f'{selected_platform} Dashboard')
 color = ['#006E99', '#003B6F', '#C9A84C', '#F5E6C8', '#FFFFFF']  if selected_platform=='DISNEY' else ['#221f1f', '#b20710', '#e50914','#f5f5f1']
 image = 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg' if selected_platform=='DISNEY' else 'https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg'
-
 st.image(image,width=200)
 
 df = pd.read_csv(f'{str(selected_platform).lower()}_cleaned.csv')
 df['date_added'] = pd.to_datetime(df['date_added'])
 df['duration'] = pd.to_numeric(df['duration'])
-
 selected_type = st.sidebar.selectbox('Type', options=['Movie', 'TV Show'])
 
 # min_year = int(df[df.type==selected_type]['release_year'].min())
