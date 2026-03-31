@@ -1,6 +1,6 @@
 pandas
 numpy
-plotly
+plotly==6.5.2
 streamlit==1.28.0
 altair==4.2.2
 seaborn
