@@ -11,12 +11,7 @@ color = ['#006E99', '#003B6F', '#C9A84C', '#F5E6C8', '#FFFFFF']  if selected_pla
 image = 'https://www.logo.wine/a/logo/Disney%2B/Disney%2B-Logo.wine.svg' if selected_platform=='DISNEY' else 'https://www.logo.wine/a/logo/Netflix/Netflix-Logo.wine.svg'
 st.image(image,width=200)
 
-# Load data after platform is selected
-@st.cache_data
-def load_data(selected_platform):
-    return pd.read_csv(f'{selected_platform.lower()}_cleaned.csv')
-
-df = load_data(selected_platform)
+df = pd.read_csv('disney_cleaned.csv') if selected_platform=='DISNEY' else pd.read_csv('netflix_cleaned.csv')
 df['date_added'] = pd.to_datetime(df['date_added'])
 df['duration'] = pd.to_numeric(df['duration'])
 selected_type = st.sidebar.selectbox('Type', options=['Movie', 'TV Show'])
